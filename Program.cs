@@ -8,6 +8,8 @@ namespace testApp05
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            // Enable server-side Blazor so we can render Blazor components inside Razor Pages
+            builder.Services.AddServerSideBlazor();
 
             var app = builder.Build();
 
@@ -28,6 +30,9 @@ namespace testApp05
             app.MapStaticAssets();
             app.MapRazorPages()
                .WithStaticAssets();
+
+            // Endpoint required for server-side Blazor components
+            app.MapBlazorHub();
 
             app.Run();
         }
